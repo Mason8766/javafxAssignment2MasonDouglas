@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 
-public class DashboardController {
+public class DashboardController implements Initializable{
 
     @FXML
     private ListView<Army> lstArmy;
@@ -56,13 +56,18 @@ public class DashboardController {
         Unit greySeer = new Unit("greySeer",6,1,4,"Staff",keywords,120);
 
 
+//
+//        //list containing students hobbies
+//        List Units = new ArrayList<Unit>();
+//        Units.add(clanrat);
+//        Units.add(stormvermin);
+//        Units.add(greySeer);
 
         //list containing students hobbies
-        List Units = new ArrayList<Unit>();
-        Units.add(clanrat);
-        Units.add(stormvermin);
-        Units.add(greySeer);
-
+        List Units = new ArrayList<String>();
+        Units.add(clanrat.getName());
+        Units.add(stormvermin.getName());
+        Units.add(greySeer.getName());
 
 
         //for each member of the array, insert it into the list view
