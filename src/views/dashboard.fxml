@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.DashboardController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="573.0" prefWidth="588.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashboardController">
+   <children>
+      <ListView fx:id="lstArmy" layoutX="42.0" layoutY="87.0" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="lstArmyUnits" layoutX="42.0" layoutY="316.0" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="lstUnits" layoutX="374.0" layoutY="86.0" prefHeight="433.0" prefWidth="200.0" />
+      <Label layoutX="112.0" layoutY="54.0" text="Armys">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="84.0" layoutY="288.0" text="Armys Units">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="434.0" layoutY="54.0" text="All Units">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnNewArmy" layoutX="259.0" layoutY="171.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="101.0" text="New Army" />
+      <Button fx:id="btnNewUnit" layoutX="259.0" layoutY="271.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="101.0" text="New Unit" />
+   </children>
 </AnchorPane>
