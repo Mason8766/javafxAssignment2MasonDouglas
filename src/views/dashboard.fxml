@@ -26,7 +26,7 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <Button fx:id="btnNewArmy" layoutX="259.0" layoutY="171.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="101.0" text="New Army" />
+      <Button fx:id="btnNewArmy" layoutX="259.0" layoutY="171.0" mnemonicParsing="false" onAction="#newArmyClicked" prefHeight="32.0" prefWidth="101.0" text="New Army" />
       <Button fx:id="btnNewUnit" layoutX="259.0" layoutY="278.0" mnemonicParsing="false" onAction="#newUnitClicked" prefHeight="32.0" prefWidth="101.0" text="New Unit" />
    </children>
 </AnchorPane>

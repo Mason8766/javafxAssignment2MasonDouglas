@@ -17,17 +17,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.image.ImageView;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
 
 
 public class DashboardController implements Initializable{
@@ -62,7 +53,6 @@ public class DashboardController implements Initializable{
         keywords.add("Master Clan");
         Unit greySeer = new Unit("greySeer",6,1,4,"Staff",keywords,120);
 
-
 //
 //        //list containing students hobbies
 //        List Units = new ArrayList<Unit>();
@@ -87,6 +77,16 @@ public class DashboardController implements Initializable{
 
     }
 
+    @FXML
+    void newArmyClicked(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("../views/armyCreator.fxml"));
+        Scene scene = new Scene(root);
+
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Warhammer Dashboard");
+        stage.show();
+    }
     @FXML
     private void newUnitClicked(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../views/unitCreator.fxml"));

@@ -14,11 +14,22 @@ import models.Unit;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class UnitController implements Initializable {
+    public void clear(){
+        txtName.clear();
+        txtMovementSpeed.clear();
+        txtWounds.clear();
+        txtSave.clear();
+        txtWeapon.clear();
+        lblKeywords.getItems().clear();
+        txtValue.clear();
+        txtKeyword.clear();
+    }
     @FXML
     private TextField txtName;
 
@@ -68,11 +79,32 @@ public class UnitController implements Initializable {
 
     @FXML
     void keywordClicked(ActionEvent event) {
-
+        lblKeywords.getItems().add(txtKeyword.getText());
     }
+
 
     @FXML
     void newUnitClicked(ActionEvent event) {
+        System.out.println("Clicked");
+        String name = txtName.getText();
+        int movementSpeed= Integer.parseInt(txtMovementSpeed.getText());
+        int wounds = Integer.parseInt(txtWounds.getText());
+        int save = Integer.parseInt(txtSave.getText());
+        String weapon = txtWeapon.getText();
+        double value= Double.parseDouble(txtValue.getText());
 
+        ArrayList<String> keywords = new ArrayList<String>();
+        keywords.addAll(lblKeywords.getItems());
+//        for(int i = 0; i < lblKeywords.getItems().size();i++){
+//            String keyword = (lblKeywords.getItems(i).toString());
+//            keywords.add(keyword);
+//        }
+
+        Unit newUnit = new Unit(name,movementSpeed,wounds,save,weapon,keywords,value);
+
+        System.out.println(newUnit.getName());
+        System.out.println(newUnit.getMovementSpeed());
+        System.out.println(newUnit.getKeywords());
+        clear();
     }
 }
