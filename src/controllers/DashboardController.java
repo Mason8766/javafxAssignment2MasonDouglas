@@ -1,5 +1,6 @@
 package controllers;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +23,7 @@ import javafx.fxml.Initializable;
 
 
 public class DashboardController implements Initializable{
-
+    ArrayList<Unit> unitHolderMain =new ArrayList<Unit>();
     @FXML
     private ListView<Army> lstArmy;
 
@@ -41,19 +42,20 @@ public class DashboardController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("starting");
-        ArrayList<String> keywords = new ArrayList<String>();
-        keywords.add("Chaos");
-        keywords.add("Skaven");
-        keywords.add("Clan Verminous");
-        Unit clanrat = new Unit("Clanrat",6,1,5,"Rusty Spear",keywords,6);
-        Unit stormvermin = new Unit("stormvermin",6,1,4,"Rusty Halberd",keywords,14);
-        keywords.removeAll(keywords);
-        keywords.add("Chaos");
-        keywords.add("Skaven");
-        keywords.add("Master Clan");
-        Unit greySeer = new Unit("greySeer",6,1,4,"Staff",keywords,120);
-
+//        ArrayList<String> keywords = new ArrayList<String>();
+//        keywords.add("Chaos");
+//        keywords.add("Skaven");
+//        keywords.add("Clan Verminous");
+//        Unit clanrat = new Unit("Clanrat",6,1,5,"Rusty Spear",keywords,6);
+//        Unit stormvermin = new Unit("stormvermin",6,1,4,"Rusty Halberd",keywords,14);
+//        keywords.removeAll(keywords);
+//        keywords.add("Chaos");
+//        keywords.add("Skaven");
+//        keywords.add("Master Clan");
+//        Unit greySeer = new Unit("greySeer",6,1,4,"Staff",keywords,120);
 //
+//        unitHolderMain.add(greySeer);
+////
 //        //list containing students hobbies
 //        List Units = new ArrayList<Unit>();
 //        Units.add(clanrat);
@@ -61,17 +63,16 @@ public class DashboardController implements Initializable{
 //        Units.add(greySeer);
 
         //list containing students hobbies
-        List Units = new ArrayList<String>();
-        Units.add(clanrat.getName());
-        Units.add(stormvermin.getName());
-        Units.add(greySeer.getName());
+//        List Units = new ArrayList<String>();
+//        Units.add(clanrat.getName());
+//        Units.add(stormvermin.getName());
+//        Units.add(greySeer.getName());
 
 
         //for each member of the array, insert it into the list view
-        for(int i = 0; i < Units.size();i++){
-            String unit = (Units.get(i).toString());
-            System.out.println(unit);
-            lstUnits.getItems().addAll(unit);
+        for(int i = 0; i < unitHolderMain.size();i++){
+            Unit unit = (Unit) unitHolderMain.get(i);
+            lstUnits.getItems().addAll(unit.getName());
         }
 
 
@@ -89,13 +90,39 @@ public class DashboardController implements Initializable{
     }
     @FXML
     private void newUnitClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../views/unitCreator.fxml"));
-        Scene scene = new Scene(root);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../views/unitCreator.fxml"));
+        Parent root = loader.load();
 
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Warhammer Dashboard");
-        stage.show();
+        Scene Stage = new Scene(root);
+
+        //access the controller and call a method
+        UnitController controller = loader.getController();
+        controller.initData(unitHolderMain);
+
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(Stage);
+        window.show();
+//        Parent root = FXMLLoader.load(getClass().getResource("../views/unitCreator.fxml"));
+//        Scene scene = new Scene(root);
+//
+//        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+//        stage.setScene(scene);
+//        stage.setTitle("Warhammer Dashboard");
+//        stage.show();
+
+    }
+
+    public void initData(ArrayList<Unit> unitHolder) {
+        unitHolderMain.addAll(unitHolder);
+        System.out.println("Loading");
+        for(int i = 0; i < unitHolderMain.size();i++){
+            Unit unit = (Unit) unitHolderMain.get(i);
+            System.out.println(unit.getName());
+            lstUnits.getItems().addAll(unit.getName());
+        }
 
     }
 }

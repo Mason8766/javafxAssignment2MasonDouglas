@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class UnitController implements Initializable {
+    ArrayList<Unit> unitHolder = new ArrayList<Unit>();
     public void clear(){
         txtName.clear();
         txtMovementSpeed.clear();
@@ -69,12 +70,27 @@ public class UnitController implements Initializable {
     }
     @FXML
     void dashboardClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../views/dashboard.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Warhammer Dashboard");
-        stage.show();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../views/dashboard.fxml"));
+        Parent root = loader.load();
+
+        Scene Stage = new Scene(root);
+
+        //access the controller and call a method
+        DashboardController controller = loader.getController();
+        controller.initData(unitHolder);
+
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(Stage);
+        window.show();
+//        Parent root = FXMLLoader.load(getClass().getResource("../views/dashboard.fxml"));
+//        Scene scene = new Scene(root);
+//        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+//        stage.setScene(scene);
+//        stage.setTitle("Warhammer Dashboard");
+//        stage.show();
     }
 
     @FXML
@@ -105,6 +121,15 @@ public class UnitController implements Initializable {
         System.out.println(newUnit.getName());
         System.out.println(newUnit.getMovementSpeed());
         System.out.println(newUnit.getKeywords());
+        unitHolder.add(newUnit);
         clear();
+    }
+
+    public void initData(ArrayList<Unit> unitHolderMain) {
+        unitHolder.addAll(unitHolderMain);
+        for(int i = 0; i < unitHolderMain.size();i++){
+            Unit unit = (Unit) unitHolderMain.get(i);
+            System.out.println(unit.getName());
+        }
     }
 }
