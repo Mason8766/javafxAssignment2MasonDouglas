@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -30,6 +31,8 @@ public class armyController  implements Initializable {
         armyUnit.clear();
         lblRoster.getItems().clear();
     }
+    @FXML
+    private Label lblError;
     @FXML
     void btnClearClicked(ActionEvent event) {
         clear();
@@ -60,6 +63,8 @@ public class armyController  implements Initializable {
 
 
     @FXML
+    private Button btndashboard;
+    @FXML
     private Button btnCreateArmy;
 
     @FXML
@@ -81,10 +86,31 @@ public class armyController  implements Initializable {
         }
 
     }
+
+    @FXML
+    void bttnDashboardClicked(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../views/dashboard.fxml"));
+        Parent root = loader.load();
+
+        Scene Stage = new Scene(root);
+
+        //access the controller and call a method
+        DashboardController controller = loader.getController();
+
+
+        controller.initData(unitHolder,armyHolder);
+
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(Stage);
+        window.show();
+    }
     @FXML
     void createArmyClicked(ActionEvent event) throws IOException {
 
-
+        try{
         armyHolder.add(new Army(txtArmyName.getText(),lstAlliance.getSelectionModel().getSelectedItem(),armyUnit ));
 
         FXMLLoader loader = new FXMLLoader();
@@ -104,6 +130,9 @@ public class armyController  implements Initializable {
 
         window.setScene(Stage);
         window.show();
+        }catch (IllegalArgumentException e){
+            lblError.setText(e.getMessage());
+        }
     }
 
 

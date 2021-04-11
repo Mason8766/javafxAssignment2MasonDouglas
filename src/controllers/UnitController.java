@@ -7,12 +7,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import models.Army;
 import models.Unit;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLOutput;
@@ -32,10 +34,13 @@ public class UnitController implements Initializable {
         lblKeywords.getItems().clear();
         txtValue.clear();
         txtKeyword.clear();
+        lblError.setText("");
     }
     @FXML
     private TextField txtName;
 
+    @FXML
+    private Label lblError;
     @FXML
     private TextField txtMovementSpeed;
 
@@ -103,13 +108,13 @@ public class UnitController implements Initializable {
 
     @FXML
     void newUnitClicked(ActionEvent event) {
-        System.out.println("Clicked");
-        String name = txtName.getText();
-        int movementSpeed= Integer.parseInt(txtMovementSpeed.getText());
-        int wounds = Integer.parseInt(txtWounds.getText());
-        int save = Integer.parseInt(txtSave.getText());
-        String weapon = txtWeapon.getText();
-        double value= Double.parseDouble(txtValue.getText());
+//        System.out.println("Clicked");
+//        String name = txtName.getText();
+//        int movementSpeed= Integer.parseInt(txtMovementSpeed.getText());
+//        int wounds = Integer.parseInt(txtWounds.getText());
+//        int save = Integer.parseInt(txtSave.getText());
+//        String weapon = txtWeapon.getText();
+//        double value= Double.parseDouble(txtValue.getText());
 
         ArrayList<String> keywords = new ArrayList<String>();
         keywords.addAll(lblKeywords.getItems());
@@ -117,14 +122,17 @@ public class UnitController implements Initializable {
 //            String keyword = (lblKeywords.getItems(i).toString());
 //            keywords.add(keyword);
 //        }
-
-        Unit newUnit = new Unit(name,movementSpeed,wounds,save,weapon,keywords,value);
+        try{
+        Unit newUnit = new Unit(txtName.getText(), Integer.parseInt(txtMovementSpeed.getText()),Integer.parseInt(txtWounds.getText()),Integer.parseInt(txtSave.getText()),txtWeapon.getText(),keywords,Double.parseDouble(txtValue.getText()));
 
         System.out.println(newUnit.getName());
         System.out.println(newUnit.getMovementSpeed());
         System.out.println(newUnit.getKeywords());
         unitHolder.add(newUnit);
         clear();
+        }catch (IllegalArgumentException e){
+            lblError.setText(e.getMessage());
+        }
     }
 
     public void initData(ArrayList<Unit> unitHolderMain) {
