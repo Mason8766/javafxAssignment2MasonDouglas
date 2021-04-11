@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="573.0" prefWidth="588.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashboardController">
    <children>
-      <ListView fx:id="lstArmy" layoutX="42.0" layoutY="87.0" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="lstArmy" layoutX="42.0" layoutY="87.0" onMouseClicked="#armySelectedClick" prefHeight="200.0" prefWidth="200.0" />
       <ListView fx:id="lstArmyUnits" layoutX="42.0" layoutY="316.0" prefHeight="200.0" prefWidth="200.0" />
       <ListView fx:id="lstUnits" layoutX="374.0" layoutY="86.0" prefHeight="433.0" prefWidth="200.0" />
       <Label layoutX="112.0" layoutY="54.0" text="Armys">

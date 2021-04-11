@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import models.Army;
 import models.Unit;
 
 import java.io.IOException;
@@ -21,6 +22,7 @@ import java.util.ResourceBundle;
 
 public class UnitController implements Initializable {
     ArrayList<Unit> unitHolder = new ArrayList<Unit>();
+    ArrayList<Army> armyHolder = new ArrayList<Army>();
     public void clear(){
         txtName.clear();
         txtMovementSpeed.clear();
@@ -78,7 +80,7 @@ public class UnitController implements Initializable {
 
         //access the controller and call a method
         DashboardController controller = loader.getController();
-        controller.initData(unitHolder);
+        controller.initData(unitHolder,armyHolder);
 
         //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();

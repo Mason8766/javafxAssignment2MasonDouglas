@@ -29,6 +29,7 @@ public class Army {
     private List<String> validAlliance(){
         return Arrays.asList("Order","Death","Chaos","Destruction");
     }
+
     public String getName() {
         return name;
     }

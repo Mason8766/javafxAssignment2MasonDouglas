@@ -21,7 +21,6 @@
             <Font size="11.0" />
          </font>
       </Button>
-      <Button fx:id="btnDashboard" layoutX="434.0" layoutY="355.0" mnemonicParsing="false" onAction="#dashboardClicked" text="Dashboard" />
       <Button fx:id="btnCreateArmy" layoutX="508.0" layoutY="355.0" mnemonicParsing="false" onAction="#createArmyClicked" text="Create Army" />
       <Label layoutX="457.0" layoutY="27.0" text="Units">
          <font>
