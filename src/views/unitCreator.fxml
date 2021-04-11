@@ -43,8 +43,9 @@
          </children>
       </GridPane>
       <ListView fx:id="lblKeywords" layoutX="425.0" layoutY="43.0" prefHeight="200.0" prefWidth="161.0" />
-      <Button fx:id="btnDashboard" layoutX="459.0" layoutY="355.0" mnemonicParsing="false" onAction="#dashboardClicked" text="Dashboard" />
+      <Button fx:id="btnDashboard" layoutX="432.0" layoutY="355.0" mnemonicParsing="false" onAction="#dashboardClicked" text="Dashboard" />
       <Button fx:id="btnCreateUnit" layoutX="445.0" layoutY="299.0" mnemonicParsing="false" onAction="#newUnitClicked" text="Create New Unit" />
       <Label layoutX="480.0" layoutY="14.0" text="Keywords" />
+      <Button fx:id="btnClear" layoutX="522.0" layoutY="355.0" mnemonicParsing="false" onAction="#btnClearClicked" text="Clear" />
    </children>
 </AnchorPane>

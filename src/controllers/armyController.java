@@ -26,15 +26,17 @@ public class armyController  implements Initializable {
 
 
 
-
+    public void clear(){
+        armyUnit.clear();
+        lblRoster.getItems().clear();
+    }
+    @FXML
+    void btnClearClicked(ActionEvent event) {
+        clear();
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lstAlliance.getItems().addAll("Order","Chaos","Death","Destruction");
-
-
-
-
-
 
         //for each member of the array, insert it into the list view
         for(int i = 0; i < unitHolder.size();i++){
@@ -43,6 +45,7 @@ public class armyController  implements Initializable {
         }
 
     }
+
     @FXML
     private TextField txtArmyName;
 
@@ -52,6 +55,8 @@ public class armyController  implements Initializable {
     @FXML
     private Button btnAddUnit;
 
+    @FXML
+    private Button btnClear;
 
 
     @FXML

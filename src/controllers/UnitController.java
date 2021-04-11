@@ -134,4 +134,11 @@ public class UnitController implements Initializable {
             System.out.println(unit.getName());
         }
     }
+    @FXML
+    private Button btnClear;
+
+    @FXML
+    void btnClearClicked(ActionEvent event) {
+        clear();
+    }
 }
