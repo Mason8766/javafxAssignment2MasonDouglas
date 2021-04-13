@@ -23,8 +23,13 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class UnitController implements Initializable {
+    //list to hold inbound and outbound data
     ArrayList<Unit> unitHolder = new ArrayList<Unit>();
     ArrayList<Army> armyHolder = new ArrayList<Army>();
+
+    /***
+     * Clears textfeild and listviews
+     */
     public void clear(){
         txtName.clear();
         txtMovementSpeed.clear();
@@ -71,10 +76,21 @@ public class UnitController implements Initializable {
     @FXML
     private Button btnCreateUnit;
 
+    /**
+     * Starts form
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ArrayList<String> keywords = new ArrayList<String>();
     }
+
+    /**
+     * Returns user back to dashboard with data
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void dashboardClicked(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -83,58 +99,50 @@ public class UnitController implements Initializable {
 
         Scene Stage = new Scene(root);
 
-        //access the controller and call a method
+
         DashboardController controller = loader.getController();
         controller.initData(unitHolder,armyHolder);
 
-        //This line gets the Stage information
+
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 
         window.setScene(Stage);
         window.show();
-//        Parent root = FXMLLoader.load(getClass().getResource("../views/dashboard.fxml"));
-//        Scene scene = new Scene(root);
-//        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-//        stage.setScene(scene);
-//        stage.setTitle("Warhammer Dashboard");
-//        stage.show();
+//
     }
 
+    /**
+     * Adds entered keywords to listview, and to keyword array
+     * @param event
+     */
     @FXML
     void keywordClicked(ActionEvent event) {
         lblKeywords.getItems().add(txtKeyword.getText());
     }
 
-
+    /**
+     * Creates a new unit of user input, then clears form
+     * @param event
+     */
     @FXML
     void newUnitClicked(ActionEvent event) {
-//        System.out.println("Clicked");
-//        String name = txtName.getText();
-//        int movementSpeed= Integer.parseInt(txtMovementSpeed.getText());
-//        int wounds = Integer.parseInt(txtWounds.getText());
-//        int save = Integer.parseInt(txtSave.getText());
-//        String weapon = txtWeapon.getText();
-//        double value= Double.parseDouble(txtValue.getText());
 
         ArrayList<String> keywords = new ArrayList<String>();
         keywords.addAll(lblKeywords.getItems());
-//        for(int i = 0; i < lblKeywords.getItems().size();i++){
-//            String keyword = (lblKeywords.getItems(i).toString());
-//            keywords.add(keyword);
-//        }
-        try{
+//
+        try{//if possible to create unit
         Unit newUnit = new Unit(txtName.getText(), Integer.parseInt(txtMovementSpeed.getText()),Integer.parseInt(txtWounds.getText()),Integer.parseInt(txtSave.getText()),txtWeapon.getText(),keywords,Double.parseDouble(txtValue.getText()));
-
-        System.out.println(newUnit.getName());
-        System.out.println(newUnit.getMovementSpeed());
-        System.out.println(newUnit.getKeywords());
         unitHolder.add(newUnit);
-        clear();
-        }catch (IllegalArgumentException e){
+        clear();//clears form
+        }catch (IllegalArgumentException e){//error
             lblError.setText(e.getMessage());
         }
     }
 
+    /**
+     * Data from other forms
+     * @param unitHolderMain
+     */
     public void initData(ArrayList<Unit> unitHolderMain) {
         unitHolder.addAll(unitHolderMain);
         for(int i = 0; i < unitHolderMain.size();i++){
@@ -145,6 +153,10 @@ public class UnitController implements Initializable {
     @FXML
     private Button btnClear;
 
+    /**
+     * when clicked, clears form
+     * @param event
+     */
     @FXML
     void btnClearClicked(ActionEvent event) {
         clear();

@@ -13,7 +13,16 @@ public class Unit {
     private double value;
 
 
-
+    /**
+     * Constructor
+     * @param name
+     * @param movementSpeed
+     * @param wounds
+     * @param save
+     * @param weapon
+     * @param keywords
+     * @param value
+     */
     public Unit(String name, int movementSpeed, int wounds, int save, String weapon, ArrayList<String> keywords, double value) {
         setName(name);
         setMovementSpeed(movementSpeed);
@@ -25,9 +34,15 @@ public class Unit {
 
     }
 
+    /**
+     * Returns the amount of point this unit cost, based off the value, and number of models contained in the unit
+     * @param numberOfModels
+     * @return
+     */
     public double pointCalculator(int numberOfModels){
         return numberOfModels*value;
     }
+
     public String getName() {
         return name;
     }

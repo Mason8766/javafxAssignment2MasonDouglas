@@ -9,11 +9,22 @@ public class Army {
     private String grandAlliance;
     private ArrayList<Unit> roster;
 
+    /**
+     * Constructor
+     * @param name
+     * @param grandAlliance
+     * @param roster
+     */
     public Army(String name, String grandAlliance, ArrayList<Unit> roster) {
         setGrandAlliance(grandAlliance);
         setName(name);
         setRoster(roster);
     }
+
+    /**
+     * Returns a string version of army, and roster
+     * @return
+     */
     public String toString(){
         String print;
         print = name+" contain the following units: ";
@@ -23,9 +34,19 @@ public class Army {
         print = print.substring(0,print.length()-2);
         return print;
     }
+
+    /***
+     * Returns the amount of units in the armys roster
+     * @return
+     */
     public int sizeOfRoster(){
         return roster.size();
     }
+
+    /***
+     * Validates if the user entered a valid alliance for this army
+     * @return
+     */
     private List<String> validAlliance(){
         return Arrays.asList("Order","Death","Chaos","Destruction");
     }
