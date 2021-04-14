@@ -26,8 +26,11 @@ import javafx.fxml.Initializable;
 
 
 public class DashboardController implements Initializable{
+
     ArrayList<Unit> unitHolderMain =new ArrayList<Unit>(); //holds the list of ALL units for entire application
     ArrayList<Army> armyHolderMain =new ArrayList<Army>();//holds the list of all Armys for the entire application
+
+
     @FXML
     private ListView<String> lstArmy;
 
@@ -67,6 +70,7 @@ public class DashboardController implements Initializable{
      */
     @FXML
     void CalculateClicked(ActionEvent event) {
+
         try {
             String models = txtNumberOfModels.getText();
             int numb = Integer.parseInt(models);
@@ -163,5 +167,59 @@ public class DashboardController implements Initializable{
 
 
 
+    }
+    @FXML
+    private Button btnGenerate;
+
+    /**
+     * Called when button clicked, to make pregenerated objects (units, army)
+     * @param event
+     * @throws IOException
+     */
+    @FXML
+    void generateClicked(ActionEvent event) throws IOException {
+
+        //Premade objects
+        ArrayList<String> keywords = new ArrayList<String>();
+        keywords.add("Chaos");
+        keywords.add("Skaven");
+        keywords.add("Clan Verminous");
+        Unit clanrat = new Unit("Clanrat",6,1,5,"Rusty Spear",keywords,6);
+        Unit stormvermin = new Unit("stormvermin",6,1,4,"Rusty Halberd",keywords,14);
+        keywords.removeAll(keywords);
+        keywords.add("Chaos");
+        keywords.add("Skaven");
+        keywords.add("Master Clan");
+        Unit greySeer = new Unit("greySeer",6,1,4,"Staff",keywords,120);
+
+        unitHolderMain.add(clanrat);
+        unitHolderMain.add(stormvermin);
+        unitHolderMain.add(greySeer);
+
+        ArrayList<Unit> Units = new ArrayList<Unit>();
+        Units.add(clanrat);
+        Units.add(stormvermin);
+        Units.add(greySeer);
+
+        Army skaven = new Army("Skaventide","Chaos",Units);
+        armyHolderMain.add(skaven);
+
+
+        //Reloads the form with the new data
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../views/dashboard.fxml"));
+        Parent root = loader.load();
+
+        Scene Stage = new Scene(root);
+
+        DashboardController controller = loader.getController();
+
+
+        controller.initData(unitHolderMain,armyHolderMain);
+
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(Stage);
+        window.show();
     }
 }

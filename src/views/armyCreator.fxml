@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.armyController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.armyController">
    <children>
       <Label layoutX="33.0" layoutY="57.0" text="Army Name">
          <font>
@@ -33,7 +33,7 @@
             <Font size="23.0" />
          </font>
       </Label>
-      <Label layoutX="62.0" layoutY="112.0" text="Grand Alliance">
+      <Label layoutX="62.0" layoutY="115.0" text="Grand Alliance">
          <font>
             <Font size="14.0" />
          </font>

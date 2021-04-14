@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="573.0" prefWidth="588.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashboardController">
+<AnchorPane prefHeight="573.0" prefWidth="588.0" style="-fx-background-color: grey;"  xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashboardController">
    <children>
       <ListView fx:id="lstArmy" layoutX="42.0" layoutY="87.0" onMouseClicked="#armySelectedClick" prefHeight="200.0" prefWidth="200.0" />
       <ListView fx:id="lstArmyUnits" layoutX="43.0" layoutY="359.0" prefHeight="200.0" prefWidth="200.0" />
@@ -43,5 +43,6 @@
       </Label>
       <TextField fx:id="txtNumberOfModels" layoutX="500.0" layoutY="466.0" prefHeight="25.0" prefWidth="61.0" />
       <Button fx:id="btnCalculate" layoutX="371.0" layoutY="527.0" mnemonicParsing="false" onAction="#CalculateClicked" prefHeight="25.0" prefWidth="110.0" text="Calculate" />
+      <Button fx:id="btnGenerate" layoutX="251.0" layoutY="394.0" mnemonicParsing="false" onAction="#generateClicked" text="Generate Premade " />
    </children>
 </AnchorPane>
